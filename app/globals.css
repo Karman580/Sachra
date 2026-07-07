@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme {
+  /* Sachra design tokens — forest/emerald on charcoal */
+  --color-ink: #0a0e0c;
+  --color-ink-2: #0e1411;
+  --color-surface: #111815;
+  --color-surface-2: #16201b;
+  --color-line: #1f2b25;
+  --color-line-2: #2b3a32;
+  --color-cream: #f4f3ee;
+  --color-mist: #9fb0a7;
+  --color-faint: #6b7a72;
+  --color-emerald: #10b981;
+  --color-emerald-bright: #34d399;
+  --color-forest: #0c3b2e;
+  --color-forest-deep: #08261d;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --animate-pulse-line: pulse-line 3s ease-in-out infinite;
+  --animate-flow: flow 2.4s linear infinite;
+  --animate-float: float 7s ease-in-out infinite;
+
+  @keyframes pulse-line {
+    0%, 100% { opacity: 0.25; }
+    50% { opacity: 1; }
+  }
+  @keyframes flow {
+    from { stroke-dashoffset: 24; }
+    to { stroke-dashoffset: 0; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-cream);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-emerald) 35%, transparent);
+  color: var(--color-cream);
+}
+
+/* Subtle scrollbar to match the theme */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line-2) transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
